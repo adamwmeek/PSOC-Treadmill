@@ -1,0 +1,569 @@
+ARM GAS  C:\Users\meeka\AppData\Local\Temp\ccKb6b0M.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.rodata
+  19              		.align	2
+  20              	.LC0:
+  21 0000 48656C6C 		.ascii	"Hello, world!\000"
+  21      6F2C2077 
+  21      6F726C64 
+  21      2100
+  22 000e 0000     		.section	.text.main,"ax",%progbits
+  23              		.align	2
+  24              		.global	main
+  25              		.thumb
+  26              		.thumb_func
+  27              		.type	main, %function
+  28              	main:
+  29              	.LFB56:
+  30              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** 
+  14:.\main.c      **** int main()
+  15:.\main.c      **** {
+  31              		.loc 1 15 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 8
+  34              		@ frame_needed = 1, uses_anonymous_args = 0
+  35 0000 80B5     		push	{r7, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 7, -8
+  39              		.cfi_offset 14, -4
+ARM GAS  C:\Users\meeka\AppData\Local\Temp\ccKb6b0M.s 			page 2
+
+
+  40 0002 82B0     		sub	sp, sp, #8
+  41              	.LCFI1:
+  42              		.cfi_def_cfa_offset 16
+  43 0004 00AF     		add	r7, sp, #0
+  44              	.LCFI2:
+  45              		.cfi_def_cfa_register 7
+  16:.\main.c      ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  17:.\main.c      ****     LCD_Init();
+  46              		.loc 1 17 0
+  47 0006 FFF7FEFF 		bl	LCD_Init
+  18:.\main.c      ****     LCD_Position(0,2);
+  48              		.loc 1 18 0
+  49 000a 4FF00000 		mov	r0, #0
+  50 000e 4FF00201 		mov	r1, #2
+  51 0012 FFF7FEFF 		bl	LCD_Position
+  19:.\main.c      ****     LCD_PrintString("Hello, world!");
+  52              		.loc 1 19 0
+  53 0016 40F20000 		movw	r0, #:lower16:.LC0
+  54 001a C0F20000 		movt	r0, #:upper16:.LC0
+  55 001e FFF7FEFF 		bl	LCD_PrintString
+  20:.\main.c      ****    
+  21:.\main.c      ****     uint16_t time = 0;
+  56              		.loc 1 21 0
+  57 0022 4FF00003 		mov	r3, #0
+  58 0026 FB80     		strh	r3, [r7, #6]	@ movhi
+  59              	.L9:
+  22:.\main.c      ****     
+  23:.\main.c      ****     /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
+  24:.\main.c      ****     for(;;)
+  25:.\main.c      ****     {
+  26:.\main.c      ****         LCD_Position(0,2);
+  60              		.loc 1 26 0
+  61 0028 4FF00000 		mov	r0, #0
+  62 002c 4FF00201 		mov	r1, #2
+  63 0030 FFF7FEFF 		bl	LCD_Position
+  27:.\main.c      ****         switch(time % 4)
+  64              		.loc 1 27 0
+  65 0034 FB88     		ldrh	r3, [r7, #6]
+  66 0036 03F00303 		and	r3, r3, #3
+  67 003a 032B     		cmp	r3, #3
+  68 003c 1ED8     		bhi	.L2
+  69 003e 01A2     		adr	r2, .L7
+  70 0040 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+  71              		.align	2
+  72              	.L7:
+  73 0044 55000000 		.word	.L3+1
+  74 0048 5F000000 		.word	.L4+1
+  75 004c 69000000 		.word	.L5+1
+  76 0050 73000000 		.word	.L6+1
+  77              	.L3:
+  28:.\main.c      ****         {
+  29:.\main.c      ****             case 0: LCD_PutChar(LCD_CUSTOM_0); break;
+  78              		.loc 1 29 0
+  79 0054 4FF00000 		mov	r0, #0
+  80 0058 FFF7FEFF 		bl	LCD_PutChar
+  81 005c 12E0     		b	.L8
+  82              	.L4:
+ARM GAS  C:\Users\meeka\AppData\Local\Temp\ccKb6b0M.s 			page 3
+
+
+  30:.\main.c      ****             case 1: LCD_PutChar(LCD_CUSTOM_1); break;
+  83              		.loc 1 30 0
+  84 005e 4FF00100 		mov	r0, #1
+  85 0062 FFF7FEFF 		bl	LCD_PutChar
+  86 0066 0DE0     		b	.L8
+  87              	.L5:
+  31:.\main.c      ****             case 2: LCD_PutChar(LCD_CUSTOM_2); break;
+  88              		.loc 1 31 0
+  89 0068 4FF00200 		mov	r0, #2
+  90 006c FFF7FEFF 		bl	LCD_PutChar
+  91 0070 08E0     		b	.L8
+  92              	.L6:
+  32:.\main.c      ****             case 3: LCD_PutChar(LCD_CUSTOM_1); break;
+  93              		.loc 1 32 0
+  94 0072 4FF00100 		mov	r0, #1
+  95 0076 FFF7FEFF 		bl	LCD_PutChar
+  96 007a 03E0     		b	.L8
+  97              	.L2:
+  33:.\main.c      ****             default: LCD_PutChar(LCD_CUSTOM_2);
+  98              		.loc 1 33 0
+  99 007c 4FF00200 		mov	r0, #2
+ 100 0080 FFF7FEFF 		bl	LCD_PutChar
+ 101              	.L8:
+  34:.\main.c      ****         }
+  35:.\main.c      ****         CyDelay(300);
+ 102              		.loc 1 35 0
+ 103 0084 4FF49670 		mov	r0, #300
+ 104 0088 FFF7FEFF 		bl	CyDelay
+  36:.\main.c      ****     }
+ 105              		.loc 1 36 0
+ 106 008c CCE7     		b	.L9
+ 107              		.cfi_endproc
+ 108              	.LFE56:
+ 109              		.size	main, .-main
+ 110 008e 00BF     		.text
+ 111              	.Letext0:
+ 112              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.0\\psoc creator\\import\\gnu_cs\\arm\\4
+ 113              		.file 3 "./Generated_Source/PSoC5/core_cm3.h"
+ 114              		.section	.debug_info,"",%progbits
+ 115              	.Ldebug_info0:
+ 116 0000 DD000000 		.4byte	0xdd
+ 117 0004 0200     		.2byte	0x2
+ 118 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 119 000a 04       		.byte	0x4
+ 120 000b 01       		.uleb128 0x1
+ 121 000c 33000000 		.4byte	.LASF15
+ 122 0010 01       		.byte	0x1
+ 123 0011 8E000000 		.4byte	.LASF16
+ 124 0015 CF000000 		.4byte	.LASF17
+ 125 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 126 001d 00000000 		.4byte	0
+ 127 0021 00000000 		.4byte	0
+ 128 0025 00000000 		.4byte	.Ldebug_line0
+ 129 0029 02       		.uleb128 0x2
+ 130 002a 01       		.byte	0x1
+ 131 002b 06       		.byte	0x6
+ 132 002c 2C010000 		.4byte	.LASF0
+ARM GAS  C:\Users\meeka\AppData\Local\Temp\ccKb6b0M.s 			page 4
+
+
+ 133 0030 02       		.uleb128 0x2
+ 134 0031 01       		.byte	0x1
+ 135 0032 08       		.byte	0x8
+ 136 0033 B3000000 		.4byte	.LASF1
+ 137 0037 02       		.uleb128 0x2
+ 138 0038 02       		.byte	0x2
+ 139 0039 05       		.byte	0x5
+ 140 003a 47010000 		.4byte	.LASF2
+ 141 003e 03       		.uleb128 0x3
+ 142 003f 38010000 		.4byte	.LASF4
+ 143 0043 02       		.byte	0x2
+ 144 0044 36       		.byte	0x36
+ 145 0045 49000000 		.4byte	0x49
+ 146 0049 02       		.uleb128 0x2
+ 147 004a 02       		.byte	0x2
+ 148 004b 07       		.byte	0x7
+ 149 004c 0E000000 		.4byte	.LASF3
+ 150 0050 03       		.uleb128 0x3
+ 151 0051 51010000 		.4byte	.LASF5
+ 152 0055 02       		.byte	0x2
+ 153 0056 4F       		.byte	0x4f
+ 154 0057 5B000000 		.4byte	0x5b
+ 155 005b 02       		.uleb128 0x2
+ 156 005c 04       		.byte	0x4
+ 157 005d 05       		.byte	0x5
+ 158 005e C6000000 		.4byte	.LASF6
+ 159 0062 02       		.uleb128 0x2
+ 160 0063 04       		.byte	0x4
+ 161 0064 07       		.byte	0x7
+ 162 0065 7C000000 		.4byte	.LASF7
+ 163 0069 02       		.uleb128 0x2
+ 164 006a 08       		.byte	0x8
+ 165 006b 05       		.byte	0x5
+ 166 006c 00000000 		.4byte	.LASF8
+ 167 0070 02       		.uleb128 0x2
+ 168 0071 08       		.byte	0x8
+ 169 0072 07       		.byte	0x7
+ 170 0073 97000000 		.4byte	.LASF9
+ 171 0077 04       		.uleb128 0x4
+ 172 0078 04       		.byte	0x4
+ 173 0079 05       		.byte	0x5
+ 174 007a 696E7400 		.ascii	"int\000"
+ 175 007e 02       		.uleb128 0x2
+ 176 007f 04       		.byte	0x4
+ 177 0080 07       		.byte	0x7
+ 178 0081 21000000 		.4byte	.LASF10
+ 179 0085 02       		.uleb128 0x2
+ 180 0086 04       		.byte	0x4
+ 181 0087 04       		.byte	0x4
+ 182 0088 41010000 		.4byte	.LASF11
+ 183 008c 02       		.uleb128 0x2
+ 184 008d 08       		.byte	0x8
+ 185 008e 04       		.byte	0x4
+ 186 008f 18010000 		.4byte	.LASF12
+ 187 0093 02       		.uleb128 0x2
+ 188 0094 01       		.byte	0x1
+ 189 0095 08       		.byte	0x8
+ARM GAS  C:\Users\meeka\AppData\Local\Temp\ccKb6b0M.s 			page 5
+
+
+ 190 0096 C1000000 		.4byte	.LASF13
+ 191 009a 02       		.uleb128 0x2
+ 192 009b 04       		.byte	0x4
+ 193 009c 07       		.byte	0x7
+ 194 009d 59010000 		.4byte	.LASF14
+ 195 00a1 05       		.uleb128 0x5
+ 196 00a2 01       		.byte	0x1
+ 197 00a3 2E000000 		.4byte	.LASF18
+ 198 00a7 01       		.byte	0x1
+ 199 00a8 0E       		.byte	0xe
+ 200 00a9 77000000 		.4byte	0x77
+ 201 00ad 00000000 		.4byte	.LFB56
+ 202 00b1 8E000000 		.4byte	.LFE56
+ 203 00b5 00000000 		.4byte	.LLST0
+ 204 00b9 01       		.byte	0x1
+ 205 00ba CD000000 		.4byte	0xcd
+ 206 00be 06       		.uleb128 0x6
+ 207 00bf AE000000 		.4byte	.LASF19
+ 208 00c3 01       		.byte	0x1
+ 209 00c4 15       		.byte	0x15
+ 210 00c5 3E000000 		.4byte	0x3e
+ 211 00c9 02       		.byte	0x2
+ 212 00ca 91       		.byte	0x91
+ 213 00cb 76       		.sleb128 -10
+ 214 00cc 00       		.byte	0
+ 215 00cd 07       		.uleb128 0x7
+ 216 00ce 1F010000 		.4byte	.LASF20
+ 217 00d2 03       		.byte	0x3
+ 218 00d3 1606     		.2byte	0x616
+ 219 00d5 DB000000 		.4byte	0xdb
+ 220 00d9 01       		.byte	0x1
+ 221 00da 01       		.byte	0x1
+ 222 00db 08       		.uleb128 0x8
+ 223 00dc 50000000 		.4byte	0x50
+ 224 00e0 00       		.byte	0
+ 225              		.section	.debug_abbrev,"",%progbits
+ 226              	.Ldebug_abbrev0:
+ 227 0000 01       		.uleb128 0x1
+ 228 0001 11       		.uleb128 0x11
+ 229 0002 01       		.byte	0x1
+ 230 0003 25       		.uleb128 0x25
+ 231 0004 0E       		.uleb128 0xe
+ 232 0005 13       		.uleb128 0x13
+ 233 0006 0B       		.uleb128 0xb
+ 234 0007 03       		.uleb128 0x3
+ 235 0008 0E       		.uleb128 0xe
+ 236 0009 1B       		.uleb128 0x1b
+ 237 000a 0E       		.uleb128 0xe
+ 238 000b 55       		.uleb128 0x55
+ 239 000c 06       		.uleb128 0x6
+ 240 000d 11       		.uleb128 0x11
+ 241 000e 01       		.uleb128 0x1
+ 242 000f 52       		.uleb128 0x52
+ 243 0010 01       		.uleb128 0x1
+ 244 0011 10       		.uleb128 0x10
+ 245 0012 06       		.uleb128 0x6
+ 246 0013 00       		.byte	0
+ARM GAS  C:\Users\meeka\AppData\Local\Temp\ccKb6b0M.s 			page 6
+
+
+ 247 0014 00       		.byte	0
+ 248 0015 02       		.uleb128 0x2
+ 249 0016 24       		.uleb128 0x24
+ 250 0017 00       		.byte	0
+ 251 0018 0B       		.uleb128 0xb
+ 252 0019 0B       		.uleb128 0xb
+ 253 001a 3E       		.uleb128 0x3e
+ 254 001b 0B       		.uleb128 0xb
+ 255 001c 03       		.uleb128 0x3
+ 256 001d 0E       		.uleb128 0xe
+ 257 001e 00       		.byte	0
+ 258 001f 00       		.byte	0
+ 259 0020 03       		.uleb128 0x3
+ 260 0021 16       		.uleb128 0x16
+ 261 0022 00       		.byte	0
+ 262 0023 03       		.uleb128 0x3
+ 263 0024 0E       		.uleb128 0xe
+ 264 0025 3A       		.uleb128 0x3a
+ 265 0026 0B       		.uleb128 0xb
+ 266 0027 3B       		.uleb128 0x3b
+ 267 0028 0B       		.uleb128 0xb
+ 268 0029 49       		.uleb128 0x49
+ 269 002a 13       		.uleb128 0x13
+ 270 002b 00       		.byte	0
+ 271 002c 00       		.byte	0
+ 272 002d 04       		.uleb128 0x4
+ 273 002e 24       		.uleb128 0x24
+ 274 002f 00       		.byte	0
+ 275 0030 0B       		.uleb128 0xb
+ 276 0031 0B       		.uleb128 0xb
+ 277 0032 3E       		.uleb128 0x3e
+ 278 0033 0B       		.uleb128 0xb
+ 279 0034 03       		.uleb128 0x3
+ 280 0035 08       		.uleb128 0x8
+ 281 0036 00       		.byte	0
+ 282 0037 00       		.byte	0
+ 283 0038 05       		.uleb128 0x5
+ 284 0039 2E       		.uleb128 0x2e
+ 285 003a 01       		.byte	0x1
+ 286 003b 3F       		.uleb128 0x3f
+ 287 003c 0C       		.uleb128 0xc
+ 288 003d 03       		.uleb128 0x3
+ 289 003e 0E       		.uleb128 0xe
+ 290 003f 3A       		.uleb128 0x3a
+ 291 0040 0B       		.uleb128 0xb
+ 292 0041 3B       		.uleb128 0x3b
+ 293 0042 0B       		.uleb128 0xb
+ 294 0043 49       		.uleb128 0x49
+ 295 0044 13       		.uleb128 0x13
+ 296 0045 11       		.uleb128 0x11
+ 297 0046 01       		.uleb128 0x1
+ 298 0047 12       		.uleb128 0x12
+ 299 0048 01       		.uleb128 0x1
+ 300 0049 40       		.uleb128 0x40
+ 301 004a 06       		.uleb128 0x6
+ 302 004b 9642     		.uleb128 0x2116
+ 303 004d 0C       		.uleb128 0xc
+ARM GAS  C:\Users\meeka\AppData\Local\Temp\ccKb6b0M.s 			page 7
+
+
+ 304 004e 01       		.uleb128 0x1
+ 305 004f 13       		.uleb128 0x13
+ 306 0050 00       		.byte	0
+ 307 0051 00       		.byte	0
+ 308 0052 06       		.uleb128 0x6
+ 309 0053 34       		.uleb128 0x34
+ 310 0054 00       		.byte	0
+ 311 0055 03       		.uleb128 0x3
+ 312 0056 0E       		.uleb128 0xe
+ 313 0057 3A       		.uleb128 0x3a
+ 314 0058 0B       		.uleb128 0xb
+ 315 0059 3B       		.uleb128 0x3b
+ 316 005a 0B       		.uleb128 0xb
+ 317 005b 49       		.uleb128 0x49
+ 318 005c 13       		.uleb128 0x13
+ 319 005d 02       		.uleb128 0x2
+ 320 005e 0A       		.uleb128 0xa
+ 321 005f 00       		.byte	0
+ 322 0060 00       		.byte	0
+ 323 0061 07       		.uleb128 0x7
+ 324 0062 34       		.uleb128 0x34
+ 325 0063 00       		.byte	0
+ 326 0064 03       		.uleb128 0x3
+ 327 0065 0E       		.uleb128 0xe
+ 328 0066 3A       		.uleb128 0x3a
+ 329 0067 0B       		.uleb128 0xb
+ 330 0068 3B       		.uleb128 0x3b
+ 331 0069 05       		.uleb128 0x5
+ 332 006a 49       		.uleb128 0x49
+ 333 006b 13       		.uleb128 0x13
+ 334 006c 3F       		.uleb128 0x3f
+ 335 006d 0C       		.uleb128 0xc
+ 336 006e 3C       		.uleb128 0x3c
+ 337 006f 0C       		.uleb128 0xc
+ 338 0070 00       		.byte	0
+ 339 0071 00       		.byte	0
+ 340 0072 08       		.uleb128 0x8
+ 341 0073 35       		.uleb128 0x35
+ 342 0074 00       		.byte	0
+ 343 0075 49       		.uleb128 0x49
+ 344 0076 13       		.uleb128 0x13
+ 345 0077 00       		.byte	0
+ 346 0078 00       		.byte	0
+ 347 0079 00       		.byte	0
+ 348              		.section	.debug_loc,"",%progbits
+ 349              	.Ldebug_loc0:
+ 350              	.LLST0:
+ 351 0000 00000000 		.4byte	.LFB56
+ 352 0004 02000000 		.4byte	.LCFI0
+ 353 0008 0200     		.2byte	0x2
+ 354 000a 7D       		.byte	0x7d
+ 355 000b 00       		.sleb128 0
+ 356 000c 02000000 		.4byte	.LCFI0
+ 357 0010 04000000 		.4byte	.LCFI1
+ 358 0014 0200     		.2byte	0x2
+ 359 0016 7D       		.byte	0x7d
+ 360 0017 08       		.sleb128 8
+ARM GAS  C:\Users\meeka\AppData\Local\Temp\ccKb6b0M.s 			page 8
+
+
+ 361 0018 04000000 		.4byte	.LCFI1
+ 362 001c 06000000 		.4byte	.LCFI2
+ 363 0020 0200     		.2byte	0x2
+ 364 0022 7D       		.byte	0x7d
+ 365 0023 10       		.sleb128 16
+ 366 0024 06000000 		.4byte	.LCFI2
+ 367 0028 8E000000 		.4byte	.LFE56
+ 368 002c 0200     		.2byte	0x2
+ 369 002e 77       		.byte	0x77
+ 370 002f 10       		.sleb128 16
+ 371 0030 00000000 		.4byte	0
+ 372 0034 00000000 		.4byte	0
+ 373              		.section	.debug_aranges,"",%progbits
+ 374 0000 1C000000 		.4byte	0x1c
+ 375 0004 0200     		.2byte	0x2
+ 376 0006 00000000 		.4byte	.Ldebug_info0
+ 377 000a 04       		.byte	0x4
+ 378 000b 00       		.byte	0
+ 379 000c 0000     		.2byte	0
+ 380 000e 0000     		.2byte	0
+ 381 0010 00000000 		.4byte	.LFB56
+ 382 0014 8E000000 		.4byte	.LFE56-.LFB56
+ 383 0018 00000000 		.4byte	0
+ 384 001c 00000000 		.4byte	0
+ 385              		.section	.debug_ranges,"",%progbits
+ 386              	.Ldebug_ranges0:
+ 387 0000 00000000 		.4byte	.LFB56
+ 388 0004 8E000000 		.4byte	.LFE56
+ 389 0008 00000000 		.4byte	0
+ 390 000c 00000000 		.4byte	0
+ 391              		.section	.debug_line,"",%progbits
+ 392              	.Ldebug_line0:
+ 393 0000 0E010000 		.section	.debug_str,"MS",%progbits,1
+ 393      0200EC00 
+ 393      00000201 
+ 393      FB0E0D00 
+ 393      01010101 
+ 394              	.LASF8:
+ 395 0000 6C6F6E67 		.ascii	"long long int\000"
+ 395      206C6F6E 
+ 395      6720696E 
+ 395      7400
+ 396              	.LASF3:
+ 397 000e 73686F72 		.ascii	"short unsigned int\000"
+ 397      7420756E 
+ 397      7369676E 
+ 397      65642069 
+ 397      6E7400
+ 398              	.LASF10:
+ 399 0021 756E7369 		.ascii	"unsigned int\000"
+ 399      676E6564 
+ 399      20696E74 
+ 399      00
+ 400              	.LASF18:
+ 401 002e 6D61696E 		.ascii	"main\000"
+ 401      00
+ 402              	.LASF15:
+ARM GAS  C:\Users\meeka\AppData\Local\Temp\ccKb6b0M.s 			page 9
+
+
+ 403 0033 474E5520 		.ascii	"GNU C 4.7.3 20130312 (release) [ARM/embedded-4_7-br"
+ 403      4320342E 
+ 403      372E3320 
+ 403      32303133 
+ 403      30333132 
+ 404 0066 616E6368 		.ascii	"anch revision 196615]\000"
+ 404      20726576 
+ 404      6973696F 
+ 404      6E203139 
+ 404      36363135 
+ 405              	.LASF7:
+ 406 007c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 406      20756E73 
+ 406      69676E65 
+ 406      6420696E 
+ 406      7400
+ 407              	.LASF16:
+ 408 008e 2E5C6D61 		.ascii	".\\main.c\000"
+ 408      696E2E63 
+ 408      00
+ 409              	.LASF9:
+ 410 0097 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 410      206C6F6E 
+ 410      6720756E 
+ 410      7369676E 
+ 410      65642069 
+ 411              	.LASF19:
+ 412 00ae 74696D65 		.ascii	"time\000"
+ 412      00
+ 413              	.LASF1:
+ 414 00b3 756E7369 		.ascii	"unsigned char\000"
+ 414      676E6564 
+ 414      20636861 
+ 414      7200
+ 415              	.LASF13:
+ 416 00c1 63686172 		.ascii	"char\000"
+ 416      00
+ 417              	.LASF6:
+ 418 00c6 6C6F6E67 		.ascii	"long int\000"
+ 418      20696E74 
+ 418      00
+ 419              	.LASF17:
+ 420 00cf 443A5C44 		.ascii	"D:\\Documents\\School Documents\\PSOC\\1 - Hello Wo"
+ 420      6F63756D 
+ 420      656E7473 
+ 420      5C536368 
+ 420      6F6F6C20 
+ 421 00fe 726C645C 		.ascii	"rld\\1 - Hello World.cydsn\000"
+ 421      31202D20 
+ 421      48656C6C 
+ 421      6F20576F 
+ 421      726C642E 
+ 422              	.LASF12:
+ 423 0118 646F7562 		.ascii	"double\000"
+ 423      6C6500
+ 424              	.LASF20:
+ 425 011f 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ARM GAS  C:\Users\meeka\AppData\Local\Temp\ccKb6b0M.s 			page 10
+
+
+ 425      52784275 
+ 425      66666572 
+ 425      00
+ 426              	.LASF0:
+ 427 012c 7369676E 		.ascii	"signed char\000"
+ 427      65642063 
+ 427      68617200 
+ 428              	.LASF4:
+ 429 0138 75696E74 		.ascii	"uint16_t\000"
+ 429      31365F74 
+ 429      00
+ 430              	.LASF11:
+ 431 0141 666C6F61 		.ascii	"float\000"
+ 431      7400
+ 432              	.LASF2:
+ 433 0147 73686F72 		.ascii	"short int\000"
+ 433      7420696E 
+ 433      7400
+ 434              	.LASF5:
+ 435 0151 696E7433 		.ascii	"int32_t\000"
+ 435      325F7400 
+ 436              	.LASF14:
+ 437 0159 73697A65 		.ascii	"sizetype\000"
+ 437      74797065 
+ 437      00
+ 438              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.7.3 20130312 (release) [ARM/embedded-4_7-br
