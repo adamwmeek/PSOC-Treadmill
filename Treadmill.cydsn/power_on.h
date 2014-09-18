@@ -12,5 +12,6 @@
 
 void playNote(int frequency, int duration);
 void startup_music();
+void startup_display();
 
 /* [] END OF FILE */

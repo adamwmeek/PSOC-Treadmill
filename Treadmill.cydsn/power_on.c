@@ -43,6 +43,38 @@ void startup_music(){
     }
 }
 
+void startup_display(){
+    
+    LCD_Init();
+    
+    //fill top with blocks in 100ms intervals
+    LCD_Position(0,0);
+    LCD_PutChar(LCD_CUSTOM_6);
+    
+    int i;
+    for(i = 1; i < 16; i++){
+        LCD_Position(0,i);
+        LCD_PutChar(LCD_CUSTOM_6);
+        
+        LCD_Position(0,i-1);
+        LCD_PutChar(LCD_CUSTOM_7);
+        
+        CyDelay(100);
+    }
+    
+    LCD_ClearDisplay();
+    
+    //Display welcome text
+    LCD_Position(0,3);
+    LCD_PrintString("Welcome to");
+    
+    LCD_Position(1,3);
+    LCD_PrintString("my treadmill");
+    
+    //Pause so user can read it, then clear
+    CyDelay(1500);
+    LCD_ClearDisplay();    
+}
 
 
 

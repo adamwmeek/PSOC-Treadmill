@@ -15,9 +15,7 @@
 int main()
 {
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-    LCD_Init();
-    LCD_Position(1,2);
-    LCD_PrintString("Hello, world!");
+    startup_display();
     startup_music();
    
     uint16_t time = 0;
