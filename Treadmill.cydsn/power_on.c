@@ -18,23 +18,23 @@
  * Plays a note 
  * @param duration  The duration of the note in ms
  */
-void playNote(int frequency, int duration) {
+void playNote(double frequency, int duration) {
     
-    double halfPeriod = 1.0 / (2 * frequency);
-    int cycles = ceil(( duration / 1000 ) / (halfPeriod * 2));
+    int halfPeriod = (int) ceil(1000.0 / (2.0 * frequency));
+    int cycles = duration / halfPeriod;
     
     int i;
     for(i = 0; i < cycles; i++){
         CyPins_SetPin( SpeakerPin_0 );
-        CyDelay( halfPeriod );
+        CyDelay( ceil(halfPeriod) );
         CyPins_ClearPin( SpeakerPin_0 );
-        CyDelay( halfPeriod );
+        CyDelay( ceil(halfPeriod) );
     }
 }
 
 void startup_music(){
     
-    int noteFreq[] = { 440 , 360, 440};
+    double noteFreq[] = { 400 , 200, 400};
     int noteDur[] = { 200, 200, 200 };
     
     int i;
@@ -68,7 +68,7 @@ void startup_display(){
     LCD_Position(0,3);
     LCD_PrintString("Welcome to");
     
-    LCD_Position(1,3);
+    LCD_Position(1,2);
     LCD_PrintString("my treadmill");
     
     //Pause so user can read it, then clear

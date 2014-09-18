@@ -1,6 +1,6 @@
 // ======================================================================
 // Treadmill.v generated from TopDesign.cysch
-// 09/17/2014 at 00:18
+// 09/17/2014 at 20:25
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -50,7 +50,7 @@
 `define CYDEV_CHIP_FAMILY_USED 3
 `define CYDEV_CHIP_MEMBER_USED 5
 `define CYDEV_CHIP_REVISION_USED 0
-// CharLCD_v2_0(ConversionRoutines=true, CUSTOM0="0,0,0,4,0,0,0,0,", CUSTOM1="0,0,0,E,4,0,0,0,", CUSTOM2="0,0,A,15,11,A,4,0,", CUSTOM3="0,E,A,C,A,A,0,0,", CUSTOM4="0,E,8,C,8,E,0,0,", CUSTOM5="0,E,8,E,2,E,0,0,", CUSTOM6="0,E,8,E,2,E,0,0,", CUSTOM7="0,4,4,4,0,4,0,0,", CustomCharacterSet=3, TypeReplacementString=uint8, CY_COMPONENT_NAME=CharLCD_v2_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=LCD, CY_INSTANCE_SHORT_NAME=LCD, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=LCD, )
+// CharLCD_v2_0(ConversionRoutines=true, CUSTOM0="0,0,0,4,0,0,0,0,", CUSTOM1="0,0,0,E,4,0,0,0,", CUSTOM2="0,0,A,15,11,A,4,0,", CUSTOM3="0,E,A,C,A,A,0,0,", CUSTOM4="0,E,8,C,8,E,0,0,", CUSTOM5="0,E,8,E,2,E,0,0,", CUSTOM6="10,18,1C,1E,1E,1C,18,10,", CUSTOM7="1F,1F,1F,1F,1F,1F,1F,1F,", CustomCharacterSet=3, TypeReplacementString=uint8, CY_COMPONENT_NAME=CharLCD_v2_0, CY_CONTROL_FILE=<:default:>, CY_FITTER_NAME=LCD, CY_INSTANCE_SHORT_NAME=LCD, CY_MAJOR_VERSION=2, CY_MINOR_VERSION=0, CY_REMOVE=false, CY_SUPPRESS_API_GEN=false, CY_VERSION=cydsfit No Version Information Found, INSTANCE_NAME=LCD, )
 module CharLCD_v2_0_0 ;
 
 

@@ -10,7 +10,7 @@
  * ========================================
 */
 
-void playNote(int frequency, int duration);
+void playNote(double frequency, int duration);
 void startup_music();
 void startup_display();
 

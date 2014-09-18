@@ -32,6 +32,7 @@ int main()
             case 3: LCD_PutChar(LCD_CUSTOM_1); break;
             default: LCD_PutChar(LCD_CUSTOM_2);
         }
+        //playNote(440, 300);
         CyDelay(300);
         time++;
     }

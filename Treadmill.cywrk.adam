@@ -79,7 +79,6 @@
 <v>Treadmill\Treadmill\Generated_Source\PSoC5\cyfitterrv.inc</v>
 <v>Treadmill\Treadmill\Generated_Source\PSoC5\cymetadata.c</v>
 <v>Treadmill\Treadmill\Generated_Source\PSoC5\project.h</v>
-<v>Treadmill\power_on.h</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
 <v>Treadmill</v>
@@ -163,30 +162,6 @@
 <VisibleNodeIds>
 <v>Treadmill</v>
 <v>Treadmill\Treadmill</v>
-<v>Treadmill\Treadmill\CortexM3</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\Cm3Start.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\CyBootAsmGnu.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\CyDmac.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\cyfitter_cfg.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\CyFlash.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\CyLib.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\cymetadata.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\cyPm.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\CySpc.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\cyutils.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\LCD.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\LCD_CustChars.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\LCD_LCDPort.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\LCD_PM.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\main.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\power_on.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Listing Files\SpeakerPin.lst</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Treadmill.elf</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Treadmill.hex</v>
-<v>Treadmill\Treadmill\CortexM3\ARM_GCC_473\Debug\Treadmill.map</v>
 <v>Treadmill\Treadmill\Treadmill.rpt</v>
 <v>Treadmill\Treadmill\Treadmill_timing.html</v>
 </VisibleNodeIds>
@@ -229,11 +204,11 @@
 <Unloaded />
 <OpenDocs>
 <name v=".\Treadmill.cydsn\main.c" />
-<name v=".\1 - Hello World.cydsn\power_on.h" />
 <name v=".\Treadmill.cydsn\power_on.c" />
 <name v=".\Treadmill.cydsn\TopDesign\TopDesign.cysch" />
 <name v=".\Treadmill.cydsn\Treadmill.cydwr" />
 <name v=".\Treadmill.cydsn\Generated_Source\PSoC5\project.h" />
+<name v=".\Treadmill.cydsn\power_on.h" />
 </OpenDocs>
 <config v="" />
 <AutoUpdate v="true" />

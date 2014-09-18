@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
   55 001f 00       		.byte	0
   56 0020 00       		.byte	0
   57 0021 0E       		.byte	14
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 2
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 2
 
 
   58 0022 08       		.byte	8
@@ -75,22 +75,22 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
   69 002d 0E       		.byte	14
   70 002e 00       		.byte	0
   71 002f 00       		.byte	0
-  72 0030 00       		.byte	0
-  73 0031 0E       		.byte	14
-  74 0032 08       		.byte	8
-  75 0033 0E       		.byte	14
-  76 0034 02       		.byte	2
-  77 0035 0E       		.byte	14
-  78 0036 00       		.byte	0
-  79 0037 00       		.byte	0
-  80 0038 00       		.byte	0
-  81 0039 04       		.byte	4
-  82 003a 04       		.byte	4
-  83 003b 04       		.byte	4
-  84 003c 00       		.byte	0
-  85 003d 04       		.byte	4
-  86 003e 00       		.byte	0
-  87 003f 00       		.byte	0
+  72 0030 10       		.byte	16
+  73 0031 18       		.byte	24
+  74 0032 1C       		.byte	28
+  75 0033 1E       		.byte	30
+  76 0034 1E       		.byte	30
+  77 0035 1C       		.byte	28
+  78 0036 18       		.byte	24
+  79 0037 10       		.byte	16
+  80 0038 1F       		.byte	31
+  81 0039 1F       		.byte	31
+  82 003a 1F       		.byte	31
+  83 003b 1F       		.byte	31
+  84 003c 1F       		.byte	31
+  85 003d 1F       		.byte	31
+  86 003e 1F       		.byte	31
+  87 003f 1F       		.byte	31
   88              		.section	.text.LCD_LoadCustomFonts,"ax",%progbits
   89              		.align	2
   90              		.global	LCD_LoadCustomFonts
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
   16:.\Generated_Source\PSoC5/LCD_CustChars.c **** *******************************************************************************/
   17:.\Generated_Source\PSoC5/LCD_CustChars.c **** 
   18:.\Generated_Source\PSoC5/LCD_CustChars.c **** #include "LCD.h"
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 3
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 3
 
 
   19:.\Generated_Source\PSoC5/LCD_CustChars.c **** 
@@ -138,9 +138,9 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
   33:.\Generated_Source\PSoC5/LCD_CustChars.c ****     /* Character LCD_CUSTOM_5   */
   34:.\Generated_Source\PSoC5/LCD_CustChars.c ****         0x00u,    0x0Eu,    0x08u,    0x0Eu,    0x02u,    0x0Eu,    0x00u,    0x00u, \
   35:.\Generated_Source\PSoC5/LCD_CustChars.c ****     /* Character LCD_CUSTOM_6   */
-  36:.\Generated_Source\PSoC5/LCD_CustChars.c ****         0x00u,    0x0Eu,    0x08u,    0x0Eu,    0x02u,    0x0Eu,    0x00u,    0x00u, \
+  36:.\Generated_Source\PSoC5/LCD_CustChars.c ****         0x10u,    0x18u,    0x1Cu,    0x1Eu,    0x1Eu,    0x1Cu,    0x18u,    0x10u, \
   37:.\Generated_Source\PSoC5/LCD_CustChars.c ****     /* Character LCD_CUSTOM_7   */
-  38:.\Generated_Source\PSoC5/LCD_CustChars.c ****         0x00u,    0x04u,    0x04u,    0x04u,    0x00u,    0x04u,    0x00u,    0x00u \
+  38:.\Generated_Source\PSoC5/LCD_CustChars.c ****         0x1Fu,    0x1Fu,    0x1Fu,    0x1Fu,    0x1Fu,    0x1Fu,    0x1Fu,    0x1Fu \
   39:.\Generated_Source\PSoC5/LCD_CustChars.c ****  };
   40:.\Generated_Source\PSoC5/LCD_CustChars.c **** 
   41:.\Generated_Source\PSoC5/LCD_CustChars.c **** 
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
  102              	.LCFI0:
  103              		.cfi_def_cfa_offset 8
  104              		.cfi_offset 7, -8
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 4
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 4
 
 
  105              		.cfi_offset 14, -4
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
   84:.\Generated_Source\PSoC5/LCD_CustChars.c ****     LCD_WriteControl(LCD_DDRAM_0);
  141              		.loc 1 84 0
  142 003c 4FF08000 		mov	r0, #128
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 5
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 5
 
 
  143 0040 FFF7FEFF 		bl	LCD_WriteControl
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
  196 0056 F4000000 		.4byte	.LASF6
  197 005a 02       		.uleb128 0x2
  198 005b 08       		.byte	0x8
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 6
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 6
 
 
  199 005c 07       		.byte	0x7
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
  253 00c5 00       		.byte	0
  254 00c6 08       		.uleb128 0x8
  255 00c7 04       		.byte	0x4
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 7
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 7
 
 
  256 00c8 CC000000 		.4byte	0xcc
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
  310 001a 3E       		.uleb128 0x3e
  311 001b 0B       		.uleb128 0xb
  312 001c 03       		.uleb128 0x3
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 8
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 8
 
 
  313 001d 0E       		.uleb128 0xe
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
  367 0054 00       		.byte	0
  368 0055 03       		.uleb128 0x3
  369 0056 0E       		.uleb128 0xe
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 9
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 9
 
 
  370 0057 3A       		.uleb128 0x3a
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
  424 008d 13       		.uleb128 0x13
  425 008e 2F       		.uleb128 0x2f
  426 008f 0B       		.uleb128 0xb
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 10
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 10
 
 
  427 0090 00       		.byte	0
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
  481 0014 4C000000 		.4byte	.LFE0-.LFB0
  482 0018 00000000 		.4byte	0
  483 001c 00000000 		.4byte	0
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 11
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 11
 
 
  484              		.section	.debug_ranges,"",%progbits
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
  509      6E747300 
  510              	.LASF3:
  511 00ad 73686F72 		.ascii	"short unsigned int\000"
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 12
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 12
 
 
  511      7420756E 
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 1
  534      63757374 
  534      6F6D466F 
  534      6E747300 
-ARM GAS  C:\Users\adam\AppData\Local\Temp\ccHShYm2.s 			page 13
+ARM GAS  C:\Users\adam\AppData\Local\Temp\ccj39ihe.s 			page 13
 
 
  535              	.LASF0:
