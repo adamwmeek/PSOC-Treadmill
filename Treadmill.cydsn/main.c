@@ -11,6 +11,7 @@
 */
 #include <project.h>
 #include <power_on.h>
+#include <target_heart_rate.h>
 
 int main()
 {
