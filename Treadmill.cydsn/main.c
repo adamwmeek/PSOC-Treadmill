@@ -1,12 +1,13 @@
 /* ========================================
  *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
- *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
+ * PSOC-Treadmill 
+ * CE 4920 - MSOE
+ * 
+ * ----------------------------------------
+ * This is the main file for the software driving the
+ * PSOC Treadmill
+ * 
+ * @author Adam Meek meeka@msoe.edu
  * ========================================
 */
 #include <project.h>
@@ -21,7 +22,8 @@ int main()
    
     uint16_t time = 0;
     
-    /* CyGlobalIntEnable; */ /* Uncomment this line to enable global interrupts. */
+    CyGlobalIntEnable;  /* Uncomment this line to enable global interrupts. */
+    
     for(;;)
     {
         LCD_Position(0,2);
