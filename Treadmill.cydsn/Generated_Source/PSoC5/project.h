@@ -22,8 +22,16 @@
 #include <LCD.h>
 #include <SpeakerPin_aliases.h>
 #include <SpeakerPin.h>
+#include <CapSense_1.h>
+#include <CapSense_1_CSHL.h>
+#include <CapSense_1_Pins.h>
+#include <CapSense_1_TunerHelper.h>
 #include <LCD_LCDPort_aliases.h>
 #include <LCD_LCDPort.h>
+#include <CapSense_1_CompCH0.h>
+#include <CapSense_1_IdacCH0.h>
+#include <CapSense_1_AMuxCH0.h>
+#include <CapSense_1_IntClock.h>
 #include <core_cm3_psoc5.h>
 #include <core_cm3.h>
 #include <CyDmac.h>

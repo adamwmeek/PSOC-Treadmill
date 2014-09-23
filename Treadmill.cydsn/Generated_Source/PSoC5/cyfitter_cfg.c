@@ -121,12 +121,64 @@ static void CyClockStartupError(uint8 errorCode)
 }
 #endif
 
+#define CY_CFG_BASE_ADDR_COUNT 24u
+CYPACKED typedef struct
+{
+	uint8 offset;
+	uint8 value;
+} CYPACKED_ATTR cy_cfg_addrvalue_t;
+
+#define cy_cfg_addr_table ((const uint32 CYFAR *)0x48000000u)
+#define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x48000060u)
+
 /* IOPINS0_7 Address: CYREG_PRT12_DM0 Size (bytes): 8 */
-#define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x48000000u)
+#define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x4800031Cu)
 
 /* IOPINS0_2 Address: CYREG_PRT2_DM0 Size (bytes): 8 */
-#define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x48000008u)
+#define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x48000324u)
 
+/* IOPINS0_3 Address: CYREG_PRT3_DM0 Size (bytes): 8 */
+#define BS_IOPINS0_3_VAL ((const uint8 CYFAR *)0x4800032Cu)
+
+/* IOPINS0_5 Address: CYREG_PRT5_DM0 Size (bytes): 8 */
+#define BS_IOPINS0_5_VAL ((const uint8 CYFAR *)0x48000334u)
+
+/* IOPINS0_6 Address: CYREG_PRT6_DM0 Size (bytes): 8 */
+#define BS_IOPINS0_6_VAL ((const uint8 CYFAR *)0x4800033Cu)
+
+
+/*******************************************************************************
+* Function Name: cfg_write_bytes32
+********************************************************************************
+* Summary:
+*  This function is used for setting up the chip configuration areas that
+*  contain relatively sparse data.
+*
+* Parameters:
+*   void
+*
+* Return:
+*   void
+*
+*******************************************************************************/
+static void cfg_write_bytes32(const uint32 addr_table[], const cy_cfg_addrvalue_t data_table[]);
+static void cfg_write_bytes32(const uint32 addr_table[], const cy_cfg_addrvalue_t data_table[])
+{
+	/* For 32-bit little-endian architectures */
+	uint32 i, j = 0u;
+	for (i = 0u; i < CY_CFG_BASE_ADDR_COUNT; i++)
+	{
+		uint32 baseAddr = addr_table[i];
+		uint8 count = (uint8)baseAddr;
+		baseAddr &= 0xFFFFFF00u;
+		while (count != 0u)
+		{
+			CY_SET_XTND_REG8((void CYFAR *)(baseAddr + data_table[j].offset), data_table[j].value);
+			j++;
+			count--;
+		}
+	}
+}
 
 /*******************************************************************************
 * Function Name: ClockSetup
@@ -150,6 +202,10 @@ static void ClockSetup(void)
 	uint32 timeout;
 	uint8 pllLock;
 
+
+	/* Configure Digital Clocks based on settings from Clock DWR */
+	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG0_CFG0), 0x0001u);
+	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG0_CFG0 + 0x2u), 0x18u);
 
 	/* Configure ILO based on settings from Clock DWR */
 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_SLOWCLK_ILO_CR0), 0x02u);
@@ -182,6 +238,8 @@ static void ClockSetup(void)
 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_BCFG2), 0x48u);
 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_MSTR0), 0x00u);
 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_LD), 0x02u);
+
+	CY_SET_XTND_REG8((void CYFAR *)(CYREG_PM_ACT_CFG2), ((CY_GET_XTND_REG8((void CYFAR *)CYREG_PM_ACT_CFG2) | 0x01u)));
 }
 
 
@@ -209,6 +267,10 @@ static void AnalogSetDefault(void)
 	uint8 bg_xover_inl_trim = CY_GET_XTND_REG8((void CYFAR *)(CYREG_FLSHID_MFG_CFG_BG_XOVER_INL_TRIM + 1u));
 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_BG_DFT0), (bg_xover_inl_trim & 0x07u));
 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_BG_DFT1), ((bg_xover_inl_trim >> 4) & 0x0Fu));
+	CY_SET_XTND_REG8((void CYFAR *)CYREG_PRT6_AG, 0x01u);
+	CY_SET_XTND_REG8((void CYFAR *)CYREG_CAPSL_CFG0, 0x00u);
+	CY_SET_XTND_REG8((void CYFAR *)CYREG_CMP3_SW3, 0x20u);
+	CY_SET_XTND_REG8((void CYFAR *)CYREG_BUS_SW3, 0x01u);
 	CY_SET_XTND_REG8((void CYFAR *)CYREG_PUMP_CR0, 0x44u);
 }
 
@@ -235,16 +297,85 @@ void SetAnalogRoutingPumps(uint8 enabled)
 	uint8 regValue = CY_GET_XTND_REG8((void CYFAR *)CYREG_PUMP_CR0);
 	if (enabled != 0u)
 	{
-		regValue |= 0x00u;
+		regValue |= 0x22u;
 	}
 	else
 	{
-		regValue &= (uint8)~0x00u;
+		regValue &= (uint8)~0x22u;
 	}
 	CY_SET_XTND_REG8((void CYFAR *)CYREG_PUMP_CR0, regValue);
 }
 
 #define CY_AMUX_UNUSED CYREG_BOOST_SR
+/* This is an implementation detail of the AMux. Code that depends on it may be
+   incompatible with other versions of PSoC Creator. */
+uint8 CYXDATA * const CYCODE CapSense_1_AMuxCH0__addrTable[8] = {
+	(uint8 CYXDATA *)CYREG_PRT2_AMUX, 
+	(uint8 CYXDATA *)CYREG_PRT5_AMUX, 
+	(uint8 CYXDATA *)CYREG_PRT3_AMUX, 
+	(uint8 CYXDATA *)CYREG_PRT5_AMUX, 
+	(uint8 CYXDATA *)CYREG_PRT3_AMUX, 
+	(uint8 CYXDATA *)CYREG_PRT6_AMUX, 
+	(uint8 CYXDATA *)CYREG_CMP3_SW3, 
+	(uint8 CYXDATA *)CYREG_DAC0_SW3, 
+};
+
+/* This is an implementation detail of the AMux. Code that depends on it may be
+   incompatible with other versions of PSoC Creator. */
+const uint8 CYCODE CapSense_1_AMuxCH0__maskTable[8] = {
+	0x80u, 
+	0x04u, 
+	0x01u, 
+	0x02u, 
+	0x04u, 
+	0x01u, 
+	0x01u, 
+	0x10u, 
+};
+
+/*******************************************************************************
+* Function Name: CapSense_1_AMuxCH0_Set
+********************************************************************************
+* Summary:
+*  This function is used to set a particular channel as active on the AMux.
+*
+* Parameters:  
+*   channel - The mux channel input to set as active
+*
+* Return:
+*   void
+*
+*******************************************************************************/
+void CapSense_1_AMuxCH0_Set(uint8 channel)
+{
+	if (channel < 8)
+	{
+		*CapSense_1_AMuxCH0__addrTable[channel] |= CapSense_1_AMuxCH0__maskTable[channel];
+	}
+}
+
+/*******************************************************************************
+* Function Name: CapSense_1_AMuxCH0_Unset
+********************************************************************************
+* Summary:
+*  This function is used to clear a particular channel from being active on the
+*  AMux.
+*
+* Parameters:  
+*   channel - The mux channel input to mark inactive
+*
+* Return:
+*   void
+*
+*******************************************************************************/
+void CapSense_1_AMuxCH0_Unset(uint8 channel)
+{
+	if (channel < 8)
+	{
+		*CapSense_1_AMuxCH0__addrTable[channel] &= (uint8)~CapSense_1_AMuxCH0__maskTable[channel];
+	}
+}
+
 
 
 /*******************************************************************************
@@ -284,7 +415,7 @@ void cyfitter_cfg(void)
 		static const cfg_memset_t CYCODE cfg_memset_list [] = {
 			/* address, size */
 			{(void CYFAR *)(CYREG_PRT0_DR), 32u},
-			{(void CYFAR *)(CYREG_PRT3_DR), 64u},
+			{(void CYFAR *)(CYREG_PRT4_DR), 16u},
 			{(void CYFAR *)(CYREG_PRT15_DR), 16u},
 			{(void CYFAR *)(CYDEV_UCFG_B0_P0_U0_BASE), 4096u},
 			{(void CYFAR *)(CYDEV_UCFG_B1_P2_U0_BASE), 2048u},
@@ -302,6 +433,13 @@ void cyfitter_cfg(void)
 			CYMEMZERO(ms->address, (uint32)(ms->size));
 		}
 
+		cfg_write_bytes32(cy_cfg_addr_table, cy_cfg_data_table);
+
+		/* Perform normal device configuration. Order is not critical for these items. */
+		CY_SET_XTND_REG16((void CYFAR *)(CYREG_CAPSL_CFG0), 0x0300u);
+		CY_SET_XTND_REG16((void CYFAR *)(CYREG_CAPSR_CFG0), 0x0300u);
+		CY_SET_XTND_REG16((void CYFAR *)(CYREG_LUT3_CR), 0x0303u);
+
 		/* Enable digital routing */
 		CY_SET_XTND_REG8((void CYFAR *)CYREG_BCTL0_BANK_CTL, CY_GET_XTND_REG8((void CYFAR *)CYREG_BCTL0_BANK_CTL) | 0x02u);
 		CY_SET_XTND_REG8((void CYFAR *)CYREG_BCTL1_BANK_CTL, CY_GET_XTND_REG8((void CYFAR *)CYREG_BCTL1_BANK_CTL) | 0x02u);
@@ -314,6 +452,10 @@ void cyfitter_cfg(void)
 	/* Perform second pass device configuration. These items must be configured in specific order after the regular configuration is done. */
 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT12_DM0), (const void CYFAR *)(BS_IOPINS0_7_VAL), 8u);
 	CYCONFIGCPY((void CYFAR *)(CYREG_PRT2_DM0), (const void CYFAR *)(BS_IOPINS0_2_VAL), 8u);
+	CYCONFIGCPY((void CYFAR *)(CYREG_PRT3_DM0), (const void CYFAR *)(BS_IOPINS0_3_VAL), 8u);
+	CYCONFIGCPY((void CYFAR *)(CYREG_PRT5_DM0), (const void CYFAR *)(BS_IOPINS0_5_VAL), 8u);
+	CYCONFIGCPY((void CYFAR *)(CYREG_PRT6_DM0), (const void CYFAR *)(BS_IOPINS0_6_VAL), 8u);
+	CY_SET_XTND_REG8((void CYFAR *)(CYREG_B0_P5_U1_CFG27), 0x84u);
 
 	/* Switch Boost to the precision bandgap reference from its internal reference */
 	CY_SET_REG8((void CYXDATA *)CYREG_BOOST_CR2, (CY_GET_REG8((void CYXDATA *)CYREG_BOOST_CR2) | 0x08u));
