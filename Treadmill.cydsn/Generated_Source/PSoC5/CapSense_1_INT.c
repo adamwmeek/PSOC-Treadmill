@@ -60,8 +60,6 @@
     {
         /*  Place your Interrupt code here. */
         /* `#START CapSense_1_ONE_CHANNEL_IsrCH0_ISR_ENTER` */
-        LCD_Position(0,0);
-        LCD_PrintDecUint16(CapSense_1_GetCentroidPos(CapSense_1_LINEARSLIDER0__LS));
 
         /* `#END` */
     
